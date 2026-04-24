@@ -51,7 +51,12 @@ const trainingData = [
   }
 ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface TooltipProps {
+  active?: boolean;
+  payload?: { payload: typeof trainingData[0] }[];
+}
+
+const CustomTooltip = ({ active, payload }: TooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (

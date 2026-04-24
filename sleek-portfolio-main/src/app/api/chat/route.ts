@@ -261,8 +261,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Internal server error', message: error.message },
+      { error: 'Internal server error', message },
       { status: 500 },
     );
   }
