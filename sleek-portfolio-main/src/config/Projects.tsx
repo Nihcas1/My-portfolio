@@ -15,7 +15,7 @@ import { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
-    title: 'Multi-Agent RAG System — Aila Money',
+    title: 'Multi-Agent RAG System',
     description:
       'Hierarchical multi-agent RAG system with Google ADK and Vertex AI, routing financial queries to specialized agents with semantic search over domain knowledge bases',
     image: '/project/Rag.png',
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     isWorking: true,
   },
   {
-    title: 'RAG Chatbot API — Apex AI',
+    title: 'RAG Chatbot API',
     description:
       'Production-grade RAG-based chatbot API using FastAPI, Vertex AI (Gemini, Embeddings), and Matching Engine for low-latency semantic search, with stateful conversation handling via Firestore and LangChain',
     image: '/project/Chatbot.png',

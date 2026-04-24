@@ -11,7 +11,7 @@ export type ChatSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 const chatConfig = {
   dimensions: {
-    sm: 'sm:max-w-sm sm:max-h-[500px]',
+    sm: 'sm:w-[350px] sm:h-[550px]',
     md: 'sm:max-w-md sm:max-h-[600px]',
     lg: 'sm:max-w-lg sm:max-h-[700px]',
     xl: 'sm:max-w-xl sm:max-h-[800px]',
@@ -62,7 +62,7 @@ const ExpandableChat: React.FC<ExpandableChatProps> = ({
       <div
         ref={chatRef}
         className={cn(
-          'bg-background fixed inset-0 flex h-full w-full flex-col overflow-hidden border shadow-md transition-all duration-250 ease-out sm:absolute sm:inset-auto sm:h-[80vh] sm:w-[90vw] sm:rounded-lg',
+          'bg-background/85 backdrop-blur-[3px] fixed inset-0 flex h-full w-full flex-col overflow-hidden border shadow-[0_0_40px_rgba(0,180,255,0.1)] transition-all duration-250 ease-out sm:absolute sm:inset-auto sm:rounded-2xl',
           chatConfig.chatPositions[position],
           chatConfig.dimensions[size],
           isOpen ? chatConfig.states.open : chatConfig.states.closed,

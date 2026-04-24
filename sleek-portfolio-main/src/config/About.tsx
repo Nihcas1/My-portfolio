@@ -18,5 +18,5 @@ export const mySkills = [
 
 export const about = {
   name: 'Sachin K',
-  description: `I'm an AI/ML Engineer with 1.5 years of experience building and deploying RAG-based systems, multi-agent architectures, and AI-powered pipelines using Vertex AI, Gemini, and Google ADK. I specialize in designing scalable backend systems with FastAPI, Cloud Functions, and Vector Search.`,
+  description: `I'm an AI Engineer with 1.5 years of experience building and deploying RAG-based systems, multi-agent architectures, and AI-powered pipelines using Vertex AI, Gemini, and Google ADK. I specialize in designing scalable backend systems with FastAPI, Cloud Functions, and Vector Search.`,
 };

@@ -53,6 +53,11 @@ export const experiences: Experience[] = [
         icon: <VertexAI />,
       },
       {
+        name: 'Google ADK',
+        href: 'https://google.github.io/adk-docs/',
+        icon: <GoogleADK />,
+      },
+      {
         name: 'Gemini',
         href: 'https://deepmind.google/technologies/gemini/',
         icon: <Gemini />,
@@ -69,10 +74,10 @@ export const experiences: Experience[] = [
     location: 'Coimbatore',
     image: '/company/Cloudside.png',
     description: [
-      '*Aila Money Financial Platform:* Architected a multi-agent RAG system (Google ADK, Vertex AI) with a hierarchical orchestrator routing queries to specialized agents, enabling scalable and modular query handling.',
+      '**Financial Coach Assistant:** Architected a multi-agent RAG system (Google ADK, Vertex AI) with a hierarchical orchestrator routing queries to specialized agents, enabling scalable and modular query handling.',
       'Built end-to-end data pipelines (GCS, BigQuery, Vector Search) to ingest and process financial datasets, leveraging Gemini embeddings for context-aware retrieval.',
       'Deployed production-ready agents on Google Agent Engine, implementing media retrieval via vector similarity search and integrating with mobile applications.',
-      '*Gong → Salesforce ETL Pipeline:* Architected and deployed a scalable, serverless ETL pipeline to automate ingestion of Gong sales call transcripts and metadata into Salesforce Opportunities using GCP.',
+      '**Gong → Salesforce ETL Pipeline:** Architected and deployed a scalable, serverless ETL pipeline to automate ingestion of Gong sales call transcripts and metadata into Salesforce Opportunities using GCP.',
       'Designed a multi-agent orchestration system (Google ADK SequentialAgent) leveraging Gemini 2.0 Flash to convert unstructured conversations into structured CRM insights.',
       'Implemented secure integrations including Salesforce JWT authentication and IAM-based service-to-service communication, exposed via FastAPI.',
     ],
@@ -121,9 +126,9 @@ export const experiences: Experience[] = [
     location: 'Coimbatore',
     image: '/company/Cloudside.png',
     description: [
-      '*Figma-to-React Native Code Generator:* Built an AI-powered design-to-code pipeline (Python, Figma API, Gemini 2.5 Pro) to convert Figma designs into production-ready React Native components.',
+      '**Figma-to-React Native Code Generator:** Built an AI-powered design-to-code pipeline (Python, Figma API, Gemini 2.5 Pro) to convert Figma designs into production-ready React Native components.',
       'Engineered a multi-stage pipeline capturing layout structure, navigation flows, and component relationships for precise LLM context.',
-      '*Apex AI — RAG Chatbot API:* Built and deployed a RAG-based chatbot API integrating Vertex AI and Matching Engine for low-latency semantic search over large-scale documentation.',
+      '**RAG Chatbot API:** Built and deployed a RAG-based chatbot API integrating Vertex AI and Matching Engine for low-latency semantic search over large-scale documentation.',
       'Designed an end-to-end retrieval pipeline with query reframing, context-aware retrieval, and structured response generation using Gemini.',
       'Implemented stateful conversation handling (Firestore, LangChain) with session-based memory and scalable backend services.',
     ],

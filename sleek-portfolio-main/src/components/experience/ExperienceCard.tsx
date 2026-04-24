@@ -136,17 +136,35 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       </div>
 
       {/* Description */}
-      <div className="text-secondary flex flex-col">
-        {experience.description.map(
-          (description: string, descIndex: number) => (
-            <p
-              key={descIndex}
-              dangerouslySetInnerHTML={{
-                __html: `• ${parseDescription(description)}`,
-              }}
-            />
-          ),
-        )}
+      <div className="text-secondary flex flex-col gap-2.5 mt-2">
+        {experience.description.map((description: string, descIndex: number) => {
+          // Identify if line describes a sub-project header "**Title:** details..."
+          const projectTitleMatch = description.match(/^\*\*(.*?)\*\*(.*)/);
+          
+          if (projectTitleMatch) {
+            const title = projectTitleMatch[1];
+            const restOfText = projectTitleMatch[2];
+            
+            return (
+              <div key={descIndex} className="mt-3 first:mt-0">
+                <span className="block font-bold mb-1 tracking-wide">{title}</span>
+                {restOfText.trim() && (
+                  <p className="pl-4 border-l-2 border-cyan-900/40 text-[15px] ml-1 py-1 leading-relaxed">
+                    <span dangerouslySetInnerHTML={{ __html: parseDescription(restOfText.trim()) }} />
+                  </p>
+                )}
+              </div>
+            );
+          }
+
+          // Otherwise render as a normal bullet point under the current block
+          return (
+            <p key={descIndex} className="pl-6 relative text-[15px] leading-relaxed">
+              <span className="absolute left-2 top-0 text-cyan-700 font-bold">•</span>
+              <span dangerouslySetInnerHTML={{ __html: parseDescription(description) }} />
+            </p>
+          );
+        })}
       </div>
     </div>
   );

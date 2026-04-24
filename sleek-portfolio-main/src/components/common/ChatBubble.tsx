@@ -15,6 +15,7 @@ import { chatSuggestions } from '@/config/ChatPrompt';
 import { heroConfig } from '@/config/Hero';
 import { useHapticFeedback } from '@/hooks/use-haptic-feedback';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
@@ -31,7 +32,7 @@ interface Message {
 const getInitialMessages = (): Message[] => [
   {
     id: 1,
-    text: `Hello! I'm ${heroConfig.name}'s Portfolio Assistant. How can I help you?`,
+    text: 'Hey there, how can I help you?',
     sender: 'bot',
     timestamp: new Date().toLocaleTimeString([], {
       hour: '2-digit',
@@ -203,16 +204,24 @@ const ChatBubble: React.FC = () => {
               }
 
               if (data.text) {
-                accumulatedText += data.text;
-
-                // Update the streaming message in real-time
-                setMessages((prev) =>
-                  prev.map((msg) =>
-                    msg.id === botMessageId
-                      ? { ...msg, text: accumulatedText, isStreaming: true }
-                      : msg,
-                  ),
-                );
+                // Faux letter-by-letter streaming for human feel
+                for (const char of data.text) {
+                  accumulatedText += char;
+                  const textToSet = accumulatedText;
+                  
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === botMessageId
+                        ? { ...msg, text: textToSet, isStreaming: true }
+                        : msg,
+                    ),
+                  );
+                  
+                  // Artificial typing delay (10ms per char) unless it's a structural tag
+                  if (!textToSet.includes('[SHOW_')) { 
+                      await new Promise(r => setTimeout(r, 10));
+                  }
+                }
               }
 
               if (data.done) {
@@ -239,10 +248,10 @@ const ChatBubble: React.FC = () => {
         prev.map((msg) =>
           msg.id === botMessageId
             ? {
-                ...msg,
-                text: "I'm sorry, I'm having trouble responding right now. Please try again later.",
-                isStreaming: false,
-              }
+              ...msg,
+              text: "I'm sorry, I'm having trouble responding right now. Please try again later.",
+              isStreaming: false,
+            }
             : msg,
         ),
       );
@@ -254,20 +263,20 @@ const ChatBubble: React.FC = () => {
 
   return (
     <ExpandableChat
-      className="mt-4 ml-4 max-h-[95vh] max-w-[calc(100vw-2rem)] hover:cursor-pointer sm:max-w-[calc(100vw-4rem)] md:max-w-xl"
+      className="mt-4 ml-4 hover:cursor-pointer"
       position="bottom-right"
-      size="lg"
+      size="sm"
       icon={<ChatBubbleIcon className="h-6 w-6" />}
     >
       <ExpandableChatHeader>
         <div className="flex items-center space-x-3">
           <Avatar className="border-primary h-8 w-8 border-2 bg-blue-300 dark:bg-yellow-300">
-            <AvatarImage src="/assets/logo.png" alt="Assistant" />
-            <AvatarFallback>AI</AvatarFallback>
+            <AvatarImage src="/assets/logo.png" alt={heroConfig.name} />
+            <AvatarFallback>{heroConfig.name.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <div>
             <h3 className="text-sm font-semibold">
-              {heroConfig.name}&apos;s Portfolio Assistant
+              {heroConfig.name}
             </h3>
             <div className="text-muted-foreground text-xs">
               <div className="flex items-center gap-1">
@@ -295,48 +304,61 @@ const ChatBubble: React.FC = () => {
                 <div className="flex items-start space-x-2">
                   {message.sender === 'bot' && (
                     <Avatar className="border-primary h-6 w-6 border-2 bg-blue-300 dark:bg-yellow-300">
-                      <AvatarImage src="/assets/logo.png" alt="Assistant" />
-                      <AvatarFallback>AI</AvatarFallback>
+                      <AvatarImage src="/assets/logo.png" alt={heroConfig.name} />
+                      <AvatarFallback>{heroConfig.name.substring(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
                   )}
                   <div className="max-w-xs flex-1 md:max-w-sm">
                     <div className="flex items-center gap-2">
                       <div className="prose prose-sm dark:prose-invert max-w-none flex-1">
                         {message.text ? (
-                          <ReactMarkdown
-                            components={{
-                              a: (props) => (
-                                <a
-                                  {...props}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="break-words text-blue-500 underline hover:text-blue-700"
-                                />
-                              ),
-                              // Custom paragraph component to remove default margins
-                              p: (props) => (
-                                <p {...props} className="m-0 leading-relaxed" />
-                              ),
-                              // Custom list components
-                              ul: (props) => (
-                                <ul {...props} className="m-0 pl-4" />
-                              ),
-                              ol: (props) => (
-                                <ol {...props} className="m-0 pl-4" />
-                              ),
-                              li: (props) => <li {...props} className="m-0" />,
-                              // Custom strong/bold component
-                              strong: (props) => (
-                                <strong {...props} className="font-semibold" />
-                              ),
-                            }}
-                          >
-                            {message.text}
-                          </ReactMarkdown>
+                          message.text.includes('[SHOW_CONTACT_OPTIONS]') ? (
+                            <div className="flex flex-col gap-2 mt-1 font-sans not-prose">
+                              <p className="text-[13px] text-foreground mb-0.5 leading-snug">Let&apos;s connect! Reach me via:</p>
+                              <div className="flex flex-wrap gap-2">
+                                <a href="mailto:asachin2318@gmail.com" target="_blank" rel="noreferrer" className="bg-emerald-900/30 hover:bg-emerald-800/60 border border-emerald-500/40 text-emerald-100 px-2.5 py-1.5 rounded text-[11px] font-bold flex items-center justify-center transition-colors shadow-sm no-underline">✉️ Email</a>
+                                <a href="https://www.linkedin.com/in/k-sachin01/" target="_blank" rel="noreferrer" className="bg-blue-900/30 hover:bg-blue-800/60 border border-blue-500/40 text-blue-100 px-2.5 py-1.5 rounded text-[11px] font-bold flex items-center justify-center transition-colors shadow-sm no-underline">🔗 LinkedIn</a>
+                                <Link href="/contact" className="bg-sky-900/30 hover:bg-sky-800/60 border border-sky-500/40 text-sky-100 px-2.5 py-1.5 rounded text-[11px] font-bold flex items-center justify-center transition-colors shadow-sm cursor-pointer no-underline">📝 Contact Form</Link>
+                              </div>
+                            </div>
+                          ) : (
+                            <ReactMarkdown
+                              components={{
+                                a: (props) => (
+                                  <a
+                                    {...props}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="break-words text-cyan-400 font-semibold underline hover:text-cyan-300 transition-colors"
+                                  />
+                                ),
+                                // Custom paragraph component to remove default margins
+                                p: (props) => (
+                                  <p {...props} className="m-0 leading-relaxed" />
+                                ),
+                                // Custom list components
+                                ul: (props) => (
+                                  <ul {...props} className="m-0 pl-5 space-y-1" />
+                                ),
+                                ol: (props) => (
+                                  <ol {...props} className="m-0 pl-5 space-y-1" />
+                                ),
+                                li: (props) => <li {...props} className="m-0 leading-snug" />,
+                                // Custom strong/bold component
+                                strong: (props) => (
+                                  <strong {...props} className="font-bold text-cyan-50" />
+                                ),
+                              }}
+                            >
+                              {message.text}
+                            </ReactMarkdown>
+                          )
                         ) : (
                           message.isStreaming && (
-                            <span className="text-muted-foreground">
-                              Thinking...
+                            <span className="text-muted-foreground flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-bounce"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-bounce delay-75"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-bounce delay-150"></span>
                             </span>
                           )
                         )}

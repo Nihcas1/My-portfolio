@@ -106,8 +106,18 @@
     document.body.appendChild(nekoEl);
 
     document.addEventListener('mousemove', function (event) {
-      mousePosX = event.clientX;
-      mousePosY = event.clientY;
+      // Check if mouse is hovering over the logo to prevent the cat from running over it
+      const hoveredElements = document.elementsFromPoint(event.clientX, event.clientY);
+      const isOverLogo = hoveredElements.some(el => 
+        (el.tagName === 'IMG' && el.src && el.src.includes('logo')) || 
+        el.id === 'logo' || 
+        (el.alt && el.alt.toLowerCase().includes('logo'))
+      );
+
+      if (!isOverLogo) {
+        mousePosX = event.clientX;
+        mousePosY = event.clientY;
+      }
     });
 
     window.requestAnimationFrame(onAnimationFrame);
@@ -164,7 +174,7 @@
       }
       idleAnimation =
         avalibleIdleAnimations[
-          Math.floor(Math.random() * avalibleIdleAnimations.length)
+        Math.floor(Math.random() * avalibleIdleAnimations.length)
         ];
     }
 
