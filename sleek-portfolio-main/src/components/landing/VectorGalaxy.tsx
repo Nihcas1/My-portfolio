@@ -3,7 +3,7 @@
 import { SkillNode, vectorGalaxyData } from '@/config/VectorGalaxy';
 import { Html, OrbitControls, Stars, QuadraticBezierLine } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useRef, useState, useMemo, useEffect } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 
 const Node = ({ node, isHovered, onHover }: { node: SkillNode, isHovered: boolean, onHover: (id: string | null) => void }) => {

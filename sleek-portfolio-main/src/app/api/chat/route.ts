@@ -248,7 +248,7 @@ export async function POST(request: NextRequest) {
         'X-RateLimit-Remaining': rateLimit.remaining.toString(),
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Chat API Error:', error);
 
     if (error instanceof z.ZodError) {

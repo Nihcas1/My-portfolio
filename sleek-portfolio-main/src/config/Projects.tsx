@@ -5,7 +5,6 @@ import FastAPI from '@/components/technologies/FastAPI';
 import BigQuery from '@/components/technologies/BigQuery';
 import Gemini from '@/components/technologies/Gemini';
 import CloudFunctions from '@/components/technologies/CloudFunctions';
-import LangChain from '@/components/technologies/LangChain';
 import Streamlit from '@/components/technologies/Streamlit';
 import GCP from '@/components/technologies/GCP';
 import Pinecone from '@/components/technologies/Pinecone';
