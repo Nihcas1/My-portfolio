@@ -39,7 +39,7 @@ export const experiences: Experience[] = [
     description: [
       'Spearheading advanced AI initiatives and integrating cutting-edge machine learning models into production systems.',
     ],
-    startDate: 'April 2025',
+    startDate: 'April 2026',
     endDate: 'Present',
     technologies: [
       {
@@ -82,7 +82,7 @@ export const experiences: Experience[] = [
       'Implemented secure integrations including Salesforce JWT authentication and IAM-based service-to-service communication, exposed via FastAPI.',
     ],
     startDate: 'January 2, 2025',
-    endDate: 'March 31, 2025',
+    endDate: 'March 31, 2026',
     technologies: [
       {
         name: 'Python',

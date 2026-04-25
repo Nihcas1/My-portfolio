@@ -12,8 +12,8 @@ export interface PageMeta {
 // Base site configuration
 export const siteConfig = {
   name: heroConfig.name,
-  title: 'Sachin K — AI/ML Engineer Portfolio',
-  description: 'Portfolio of Sachin K, AI/ML Engineer specializing in RAG systems, multi-agent architectures, and GCP-based AI pipelines.',
+  title: 'Sachin K — AI Engineer Portfolio',
+  description: 'Portfolio of Sachin K, AI Engineer specializing in RAG systems, multi-agent architectures, and GCP-based AI pipelines.',
   url: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
   ogImage: '/meta/opengraph-image.png',
   author: {

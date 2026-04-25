@@ -1,12 +1,12 @@
 'use client';
 
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer
 } from 'recharts';
 import SectionHeading from '../common/SectionHeading';
@@ -46,7 +46,7 @@ const trainingData = [
     accuracy: 99,
     role: "AI Engineer",
     company: "Searce",
-    date: "April 2025",
+    date: "April 2026",
     details: ["Spearheading advanced multi-agent initiatives", "Deploying scalable production AI pipelines"]
   }
 ];
@@ -73,7 +73,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps) => {
         <ul className="text-xs text-gray-300 space-y-2 font-mono">
           {data.details.map((d: string, i: number) => (
             <li key={i} className="flex gap-2 items-start leading-snug">
-              <span className="text-cyan-500 font-bold mt-0.5">{'>'}</span> 
+              <span className="text-cyan-500 font-bold mt-0.5">{'>'}</span>
               <span>{d}</span>
             </li>
           ))}
@@ -89,53 +89,53 @@ export default function ModelEvolution() {
     <Container className="mt-32 mb-10">
       <SectionHeading subHeading="Journey" heading="Training Log" />
       <p className="text-sm text-center text-cyan-200/50 mb-12">Tracking professional accuracy and skill parameter optimization across key career epochs.</p>
-      
+
       <div className="w-full h-[400px] bg-black/40 border border-cyan-900/30 rounded-2xl p-4 sm:p-8 relative group overflow-hidden shadow-[inset_0_0_50px_rgba(0,50,255,0.05)]">
         {/* Subtle grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,180,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,180,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-        
+
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={trainingData} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#004466" opacity={0.2} vertical={false} />
-            <XAxis 
-              dataKey="epoch" 
-              stroke="#0088cc" 
-              fontSize={12} 
-              tick={{fill: '#0088cc'}} 
+            <XAxis
+              dataKey="epoch"
+              stroke="#0088cc"
+              fontSize={12}
+              tick={{ fill: '#0088cc' }}
               tickLine={false}
               axisLine={{ stroke: '#004466', strokeWidth: 1 }}
               tickMargin={15}
             />
             {/* We chart the 'loss' on the Y-Axis to show it dropping over time */}
-            <YAxis 
-              stroke="#0088cc" 
-              fontSize={12} 
-              tick={{fill: '#0088cc'}} 
+            <YAxis
+              stroke="#0088cc"
+              fontSize={12}
+              tick={{ fill: '#0088cc' }}
               tickLine={false}
               axisLine={false}
               tickFormatter={(val) => val.toFixed(1)}
               domain={[0, 4]} // Fixed domain so loss clearly drops to bottom
               hide={false}
             />
-            <Tooltip 
-              content={<CustomTooltip />} 
-              cursor={{ stroke: '#00ffff', strokeWidth: 1, strokeDasharray: '4 4' }} 
+            <Tooltip
+              content={<CustomTooltip />}
+              cursor={{ stroke: '#00ffff', strokeWidth: 1, strokeDasharray: '4 4' }}
               isAnimationActive={true}
             />
-            <Line 
-              type="monotone" 
-              dataKey="loss" 
+            <Line
+              type="monotone"
+              dataKey="loss"
               name="Training Loss"
-              stroke="#00ffff" 
-              strokeWidth={3} 
-              dot={{ r: 5, fill: '#000', stroke: '#00ffff', strokeWidth: 2 }} 
+              stroke="#00ffff"
+              strokeWidth={3}
+              dot={{ r: 5, fill: '#000', stroke: '#00ffff', strokeWidth: 2 }}
               activeDot={{ r: 8, fill: '#ffffff', stroke: '#00ffff', strokeWidth: 3 }}
               animationDuration={2500}
               animationEasing="ease-out"
             />
           </LineChart>
         </ResponsiveContainer>
-        
+
         {/* Helper Badge */}
         <div className="absolute bottom-4 left-4 z-10 pointer-events-none border border-cyan-500/20 bg-black/50 px-2 py-1 rounded text-[10px] text-cyan-400 font-mono">
           Metric: Loss Minimization
