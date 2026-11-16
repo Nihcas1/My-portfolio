@@ -1,0 +1,61 @@
+---
+title: 'Audio Emotion Recognition'
+description: 'Deep learning audio emotion classification system utilizing Mel-Frequency Cepstral Coefficients (MFCC), SMOTE class balancing, and a Convolutional Neural Network (CNN) architecture with Streamlit UI.'
+image: '/project/Audio.png'
+technologies:
+  ['Python', 'TensorFlow', 'Keras', 'Librosa', 'SMOTE', 'Streamlit', 'CNN']
+github: 'https://github.com/Nihcas1/'
+live: ''
+timeline: 'May 2024 – Jul 2024'
+role: 'ML Engineer'
+team: 'Solo'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Mitigating class imbalance across subtle vocal emotional expressions (e.g., neutral vs. calm)',
+    'Extracting temporal audio features that generalize across speakers and background noises',
+    'Optimizing CNN hyper-parameters and dropout to prevent overfitting on audio spectrograms',
+  ]
+learnings:
+  [
+    'Audio signal processing and feature extraction with Librosa (MFCCs, Chroma, Mel Spectrograms)',
+    'Handling imbalanced datasets with SMOTE (Synthetic Minority Over-sampling Technique)',
+    'Deep convolutional neural network architecture design for audio pattern recognition',
+  ]
+isPublished: true
+---
+
+## Overview
+
+Human speech conveys rich affective nuances beyond textual transcripts. Detecting emotional states directly from raw audio waveforms is vital for customer service sentiment tracking, mental health monitoring, and adaptive voice assistants.
+
+This project developed an end-to-end **Speech Emotion Recognition (SER)** system. By extracting acoustic feature representations—primarily **Mel-Frequency Cepstral Coefficients (MFCCs)**—and resolving severe dataset imbalances with **SMOTE**, the system trains a multi-layer **Convolutional Neural Network (CNN)** that predicts emotions such as happy, sad, angry, surprised, neutral, and fearful.
+
+## Technical Methodology
+
+```mermaid
+flowchart TD
+    RawAudio[Raw Speech Audio .wav] --> Librosa[Librosa Feature Extraction]
+    Librosa --> MFCC[40 MFCC Features & Pitch Contours]
+    MFCC --> Balance[SMOTE Resampling & Padding]
+    
+    Balance --> CNN[2D Convolutional Neural Network]
+    CNN --> Softmax[Softmax Multi-Class Emotion Classifier]
+    Softmax --> Streamlit[Streamlit Waveform Visualizer]
+```
+
+### 1. Acoustic Feature Engineering
+- Used **Librosa** to extract 40 MFCC coefficients, capturing spectral envelope characteristics mimicking human auditory perception.
+- Applied zero-padding and fixed-length windowing to normalize audio sample durations.
+
+### 2. Dataset Balancing via SMOTE
+- Under-represented emotions were balanced using SMOTE, synthesizing feature-space vectors to ensure equitable gradient updates during model backpropagation.
+
+### 3. Model Architecture & Evaluation
+- Built a multi-layer 2D CNN with Dropout (0.3), Batch Normalization, and Max Pooling layers to capture local spectral-temporal motifs.
+- Achieved **61% test accuracy** across 6 distinct emotional classes on standard benchmark datasets (RAVDESS / TESS), well above random baseline (16.7%).
+
+### 4. Interactive Live Classifier
+- Built a **Streamlit** application allowing users to upload or record voice clips, view audio waveforms and spectrogram heatmaps, and inspect probabilistic emotion distribution bar charts.
+

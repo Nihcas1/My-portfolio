@@ -1,0 +1,66 @@
+# Sachin K — AI Engineer
+
+> AI Engineer with 2 years of experience building production Generative AI systems on Google Cloud. Specialized in agentic AI (Google ADK, LangGraph), Retrieval-Augmented Generation (RAG) over Vertex AI Vector Search and Vertex AI Search (Discovery Engine), and event-driven ingestion pipelines in Python. Certified Google Cloud Professional Machine Learning Engineer (PMLE) and Claude Code Architect (CCAF).
+
+## Profile Summary
+- **Name**: Sachin K
+- **Role**: AI Engineer (Agentic AI and Generative AI)
+- **Current Company**: Searce Cosourcing Services Pvt Ltd (April 2026 – Present)
+- **Previous Company**: Cloudside Technologies Pvt Ltd (Nov 2024 – March 2026) *(Cloudside merged into Searce in April 2026)*
+- **Location**: Coimbatore, Tamil Nadu, India
+- **Phone**: +91 9597315323
+- **Education**: 
+  - Master of Science (M.Sc) in Data Analytics, Bharathiar University (CGPA: 7.8/10)
+  - Bachelor of Science (B.Sc) in Statistics, Government Arts College (CGPA: 8.1/10)
+- **Contact**:
+  - Email: asachin2318@gmail.com
+  - GitHub: https://github.com/Nihcas1
+  - LinkedIn: https://www.linkedin.com/in/k-sachin01/
+
+---
+
+## Core Technical Skills
+- **Agentic AI**: Google Agent Development Kit (ADK), LangGraph, LangChain, Multi-Agent Systems, Supervisor & Sub-Agent Architecture, Agent-as-Tool Composition, Sequential Agent Pipelines, Cyclic Graph Topologies, State Management, Conversational Memory, Vertex AI Agent Engine
+- **Generative AI & LLMs**: Gemini 2.5 Pro, Gemini 2.0 Flash, Gemini 1.5 Flash, Prompt Engineering, Structured and Controlled JSON Generation, Multimodal Prompting, Tool Calling, LLM Evaluation (DeepEval / GEval), Guardrails, PII Redaction, Token & Cost Optimization
+- **RAG & Vector Search**: Retrieval-Augmented Generation, Vertex AI Vector Search (Matching Engine), Vertex AI Search (Discovery Engine), Pinecone, Semantic Search, Text Embeddings (gemini-embedding-001, text-embedding-005), Metadata-Filtered Retrieval, Token/Header-Based Chunking, Query Reframing, Chunk Expansion Retrieval, Two-Stage Hydration
+- **Backend & APIs**: FastAPI, Flask, REST APIs, Pydantic v2, Webhooks, Event-Driven Architecture, JWT (RS256), OAuth 2.0, OIDC ID Tokens, Serverless Functions, Streaming Responses
+- **Google Cloud**: Vertex AI, Cloud Functions (Gen 2), Cloud Run, BigQuery, Cloud Storage (GCS), Firestore, Cloud Scheduler, IAM & Service Accounts, Application Default Credentials, Agent Engine, API Gateway
+- **Data Engineering**: ETL/ELT Pipelines, Event-Driven Ingestion (GCS Triggers), Web Crawling & Scraping (BeautifulSoup, Scrapy, markdownify), Tokenization (tiktoken), Data Cleaning & Normalization, Parameterized SQL, Idempotent Reindexing, Pandas, NumPy
+
+---
+
+## Featured Production & PoC Systems
+
+### 1. Conversational AI Assistant for a Streaming Platform (Production) — Searce
+- **Role**: AI Engineer
+- **Stack**: Python, LangGraph, LangChain, Gemini 2.0 Flash, Vertex AI Search (Discovery Engine), BigQuery, Pydantic v2, DeepEval, FastAPI, GCP
+- **Architecture**: Linear EPG sub-agent within a LangGraph supervisor graph with cyclic START-to-EPG-to-TOOLS topology and Pydantic v2 self-repair retry loops resolving schedules across 121 live channels.
+- **Key Outcomes**: 45% reduction in schedule query latency via Vertex AI Search (44K+ daily records); deterministic SGT (UTC+8) temporal grounding resolving 95%+ relative-time queries; 100% elimination of live-match false positives via regex boundary tokenizers; zero regressions benchmarked with DeepEval (GEval).
+
+### 2. Multi-Agent Financial Guidance Platform (PoC) — Cloudside
+- **Role**: AI Engineer
+- **Stack**: Python, Google ADK, Vertex AI, Gemini, Vector Search, BigQuery, Cloud Functions, LangChain, Pydantic, BeautifulSoup
+- **Architecture**: End-to-end GOV.UK ingestion crawler with depth-limited domain scoping, 3072-dimensional `gemini-embedding-001` vectors, chunk-expansion retriever resolving top-k hits to full parent pages, and Agent Engine post-conversation PII masking auditor.
+
+### 3. Gong → Salesforce Agentic ETL Pipeline (PoC) — Cloudside
+- **Role**: AI Engineer
+- **Stack**: Python, Google ADK SequentialAgent, GCP Cloud Functions, FastAPI, Gemini 2.0 Flash, Salesforce REST API, JWT
+- **Architecture**: 3-stage agentic ETL pipeline converting unstructured sales calls into structured MEDDPICC opportunity fields; OAuth 2.0 JWT Bearer RS256 authentication and OIDC ID tokens.
+
+### 4. Dual RAG Chatbots over Documentation and Source Code (PoC) — Cloudside
+- **Role**: AI Engineer
+- **Stack**: Python, Vertex AI Matching Engine, Scrapy, BeautifulSoup, Firestore, LangChain, Cloud Functions, Gemini
+- **Architecture**: Version-restricted namespace indexing over automotive middleware docs and C++/Python source code; cost-tier model cascade (Gemini 1.5 Flash rewrite + Gemini 2.0 Flash synthesis).
+
+### 5. Figma-to-React Native Code Generator (Internal PoC) — Cloudside
+- **Role**: AI Engineer
+- **Stack**: Python, Gemini 2.5 Pro, Figma REST API, Streamlit, React Native
+- **Architecture**: Hierarchical schema extractor and multimodal prompting demuxing model responses into multi-file components and screens.
+
+---
+
+## Certifications & Credentials
+- **Google Cloud Certified Professional Machine Learning Engineer (PMLE)** — Google Cloud Platform (Credly: https://www.credly.com/badges/57922f23-cdff-4c62-bd5f-c3b3dce27bf7/public_url)
+- **Claude Code Architect Foundation (CCAF)** — Anthropic Claude (Credly: https://www.credly.com/badges/cc439636-e924-4739-b580-d88f6c793fda/public_url)
+- **Google Cloud Certified Associate Cloud Engineer (ACE)** — Google Cloud Platform (Credly: https://www.credly.com/badges/8ba6791a-9a4c-4105-9c7d-29f39f62ff78/public_url)
+- **AWS Certified Cloud Practitioner (CLF-C02)** — Amazon Web Services

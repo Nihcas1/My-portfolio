@@ -1,0 +1,65 @@
+---
+title: 'Snowflake Chatbot Solution'
+description: 'Snowflake-focused intelligent assistant combining document vector indexing in Pinecone with Google Gemini API for accurate, similarity-based query resolution in Streamlit.'
+image: '/project/Snowflake.png'
+technologies:
+  ['Python', 'Gemini API', 'Pinecone', 'Streamlit', 'LangChain', 'Vector Search']
+github: 'https://github.com/Nihcas1/'
+live: ''
+timeline: 'Aug 2024 – Oct 2024'
+role: 'ML Engineer'
+team: 'Solo'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Extracting tabular and SQL syntax structures from PDF technical whitepapers',
+    'Configuring similarity score thresholds to filter out low-confidence context chunks',
+    'Optimizing Streamlit state management for smooth real-time streaming answers',
+  ]
+learnings:
+  [
+    'Pinecone serverless vector database indexing and metadata filtering',
+    'LangChain document chunking strategies (RecursiveCharacterTextSplitter)',
+    'Prompt engineering for SQL generation and code formatting',
+  ]
+isPublished: true
+---
+
+## Overview
+
+Snowflake's extensive documentation and SQL syntax variations can make troubleshooting cloud data warehouse queries challenging for engineers and analysts.
+
+This project developed a dedicated **Snowflake AI Assistant** that transforms comprehensive PDF technical documentation into high-dimensional vector embeddings stored in **Pinecone**, paired with **Google Gemini API** to provide precise code snippets, optimization advice, and syntax guidance in an interactive **Streamlit** user interface.
+
+## System Design
+
+1. **Document Parsing & Chunking**:
+   - Ingests official Snowflake guides and SQL manuals using `PyPDF` and LangChain's `RecursiveCharacterTextSplitter`.
+   - Chunks are tokenized with optimal overlap (1000 chunk size, 200 overlap) to preserve code block continuity.
+
+2. **Vector Indexing (Pinecone)**:
+   - Chunks are converted into dense embeddings and loaded into a Pinecone serverless index with cosine similarity metrics and namespace partitioning.
+
+3. **Contextual Retrieval & Generation**:
+   - Queries are vectorized and matched against top-5 similar context segments.
+   - Gemini API synthesizes answers formatted with syntax-highlighted SQL, command line instructions, and authoritative references.
+
+```mermaid
+flowchart LR
+    Doc[Snowflake Docs PDF] --> Splitter[Recursive Chunking]
+    Splitter --> Embed[Gemini Embeddings]
+    Embed --> Pinecone[(Pinecone Vector DB)]
+    
+    User[User Question] --> Pinecone
+    Pinecone --> Context[Top-K Matching Chunks]
+    Context --> Gemini[Google Gemini API]
+    Gemini --> UI[Streamlit Interactive App]
+```
+
+## Key Results
+
+- **High Precision Retrieval**: Semantic similarity matching prevents incorrect SQL syntax suggestions.
+- **Instant Answers**: Provides code solutions in seconds, streamlining Snowflake query authoring and performance tuning.
+- **User-Friendly UI**: Streamlit web interface with history tracking, sample prompts, and markdown code rendering.
+

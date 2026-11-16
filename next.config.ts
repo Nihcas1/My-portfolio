@@ -1,0 +1,36 @@
+import './src/lib/storage-shim';
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@phosphor-icons/react', 'three'],
+  },
+  images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'imagekit.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.dribbble.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images-na.ssl-images-amazon.com',
+      },
+    ],
+  },
+};
+
+export default nextConfig;

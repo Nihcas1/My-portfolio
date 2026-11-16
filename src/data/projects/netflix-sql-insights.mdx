@@ -1,0 +1,70 @@
+---
+title: 'Netflix Data Analysis Project: SQL Insights'
+description: 'Comprehensive exploratory data analysis of Netflix global catalog using advanced SQL to extract actionable insights on content distribution, release timing, actor partnerships, and regional growth trends.'
+image: '/project/Netflix.png'
+technologies:
+  ['SQL', 'PostgreSQL', 'Data Analytics', 'Window Functions', 'EDA']
+github: 'https://github.com/Nihcas1/'
+live: ''
+timeline: 'Mar 2024 – Apr 2024'
+role: 'Data Analyst'
+team: 'Solo'
+status: 'completed'
+featured: false
+challenges:
+  [
+    'Normalizing multi-valued comma-separated attributes (directors, cast, countries) in raw relational tables',
+    'Formulating complex multi-stage analytical queries with Common Table Expressions (CTEs) and Window Functions',
+    'Deriving meaningful temporal trends across decade-long content release distributions',
+  ]
+learnings:
+  [
+    'Advanced SQL querying (CTEs, Window Functions, DENSE_RANK, STRING_TO_ARRAY)',
+    'Data cleaning and anomaly identification in massive media datasets',
+    'Translating complex relational queries into business strategy recommendations',
+  ]
+isPublished: true
+---
+
+## Overview
+
+Streaming platforms rely on deep content catalog analytics to drive acquisition decisions, content commissioning, and regional licensing.
+
+This project performed an in-depth analytical investigation of the **Netflix Global Catalog** (>8,800 titles) utilizing advanced **PostgreSQL** queries. By dissecting variables such as production countries, release timing, genres, and cast collaborations, the project extracted strategic business intelligence regarding Netflix's pivot from licensed TV shows to original feature movies.
+
+## Key Analytical Focus Areas
+
+1. **Content Distribution Trends**:
+   - Quantified the historical shift between Movie vs. TV Show ratios, tracking exponential catalog expansion between 2015 and 2021.
+2. **Geographical & Regional Production Hubs**:
+   - Identified the top content-producing countries (United States, India, United Kingdom) and analyzed genre preferences unique to each market.
+3. **Actor & Director Collaboration Networks**:
+   - Used array functions (`UNNEST`, `STRING_TO_ARRAY`) to isolate frequent actor-director pairings and star frequency rankings.
+4. **Rating Demographics**:
+   - Analyzed maturity ratings (TV-MA, TV-14, PG-13) across content types to reveal Netflix's target audience segmentation.
+
+```sql
+-- Sample Query: Top 5 Content Producing Countries with Movie vs TV breakdown
+WITH CountryData AS (
+    SELECT 
+        TRIM(UNNEST(STRING_TO_ARRAY(country, ','))) AS individual_country,
+        type
+    FROM netflix_titles
+    WHERE country IS NOT NULL
+)
+SELECT 
+    individual_country,
+    COUNT(*) AS total_content,
+    ROUND(100.0 * SUM(CASE WHEN type = 'Movie' THEN 1 ELSE 0 END) / COUNT(*), 1) AS pct_movies,
+    ROUND(100.0 * SUM(CASE WHEN type = 'TV Show' THEN 1 ELSE 0 END) / COUNT(*), 1) AS pct_tv_shows
+FROM CountryData
+GROUP BY individual_country
+ORDER BY total_content DESC
+LIMIT 5;
+```
+
+## Business Takeaways
+
+- **Strategic Focus**: Movies comprise over 68% of total catalog additions, prioritizing instant one-session engagement.
+- **International Growth**: Indian cinema represents the second-largest content library, with high concentration of independent and drama titles.
+

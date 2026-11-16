@@ -1,0 +1,67 @@
+---
+title: 'Figma-to-React Native Code Generator'
+description: 'End-to-end AI-powered design-to-code pipeline using Python, Figma API, and Gemini 2.5 Pro to convert Figma designs into production-ready React Native (TypeScript/TSX) components.'
+image: '/project/figma2react.png'
+technologies:
+  ['Python', 'Gemini 2.5 Pro', 'Figma API', 'Streamlit', 'Vertex AI', 'TypeScript', 'React Native']
+github: ''
+live: ''
+timeline: 'Nov 2024 – Dec 2024'
+role: 'ML Intern'
+team: 'Cloudside Technologies'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Parsing deeply nested Figma document tree node hierarchies into clean layout semantics',
+    'Preserving responsive Auto-Layout constraints in Flexbox-compliant React Native code',
+    'Minimizing code redundancy and generating reusable atomic TypeScript components',
+  ]
+learnings:
+  [
+    'Figma REST API node structure and style property parsing',
+    'Multimodal prompt engineering with Gemini 2.5 Pro visual context',
+    'Building interactive developer tooling using Streamlit',
+  ]
+isPublished: true
+---
+
+## Overview
+
+Translating Figma UI/UX designs into pixel-perfect React Native mobile code is traditionally a tedious, manual process prone to stylistic inconsistencies and layout discrepancies.
+
+This project built an intelligent, end-to-end **Design-to-Code Pipeline** that extracts AST node trees directly from the Figma REST API, pairs them with visual raster renders, and utilizes **Gemini 2.5 Pro** to generate maintainable, production-ready React Native code with TypeScript and Tailwind/StyleSheet support.
+
+## Technical Architecture
+
+```mermaid
+flowchart TD
+    FigmaURL[Figma URL & Access Token] --> Extractor[Figma REST API Extractor]
+    Extractor --> NodeTree[JSON AST Layout Tree]
+    Extractor --> ImageExport[Raster Component Preview]
+    
+    NodeTree & ImageExport --> ContextBuilder[AST Context Optimizer]
+    ContextBuilder --> Gemini[Gemini 2.5 Pro Multimodal Engine]
+    
+    Gemini --> CodeGen[React Native TSX Generator]
+    CodeGen --> Linter[Biome / Prettier Validator]
+    Linter --> UI[Interactive Streamlit Live Preview]
+```
+
+### 1. AST Traversal & Simplification
+- The Figma API produces massive JSON representations containing dozens of redundant vector points and metadata.
+- A custom Python AST visitor filters noise, preserving only critical geometry: Auto Layout (flex direction, padding, gap, alignment), typographic styles, colors, and border radii.
+
+### 2. Multimodal Code Synthesis
+- Passes both the simplified node hierarchy and the rendered visual raster into **Gemini 2.5 Pro**.
+- The model matches visual nuances against structural layout tokens to infer proper native component primitives (`<View>`, `<Text>`, `<Pressable>`, `<ScrollView>`).
+
+### 3. Developer Interface
+- Provided an intuitive **Streamlit** dashboard where developers paste their Figma file URL, preview extracted frames, adjust generation settings (TypeScript vs. JavaScript, Inline Styles vs. NativeWind), and copy or download the generated source code.
+
+## Key Outcomes
+
+- **80% Faster Prototyping**: Drastically shortened the cycle from completed Figma design to functional mobile prototype.
+- **Clean Code Quality**: Enforces strict typing with TypeScript interfaces for component props and clean modular separation.
+- **Auto Layout Fidelity**: Preserves responsive wrapping, padding, and alignments seamlessly across both iOS and Android viewports.
+
